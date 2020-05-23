@@ -55,7 +55,7 @@ module.exports = {
 	entry: {
 		// если нам надо разделить выход на несоклько файлов, иначе можно указать один
 		main: ['@babel/polyfill', './index.js'],
-		analytics: './analytics.js'
+		analytics: './analytics.ts'
 	},
 	output: {
 		// учитываем имя бандла, если выходных файлов несколько,
@@ -147,6 +147,22 @@ module.exports = {
 					options: {
 						presets: [
 							'@babel/preset-env'
+						],
+						plugins: [
+							'@babel/plugin-proposal-class-properties'
+						]
+					}
+				}
+			},
+			{
+				test: /\.ts$/,
+				exclude: /node_modules/,
+				loader: {
+					loader: 'babel-loader',
+					options: {
+						presets: [
+							'@babel/preset-env',
+							'@babel/preset-typescript'
 						],
 						plugins: [
 							'@babel/plugin-proposal-class-properties'
