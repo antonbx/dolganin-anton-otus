@@ -54,7 +54,7 @@ module.exports = {
 	mode: 'development',// позволяет не минимизировать выходные файлы
 	entry: {
 		// если нам надо разделить выход на несоклько файлов, иначе можно указать один
-		main: ['@babel/polyfill', './index.js'],
+		main: ['@babel/polyfill', './index.jsx'],
 		analytics: './analytics.ts'
 	},
 	output: {
@@ -163,6 +163,22 @@ module.exports = {
 						presets: [
 							'@babel/preset-env',
 							'@babel/preset-typescript'
+						],
+						plugins: [
+							'@babel/plugin-proposal-class-properties'
+						]
+					}
+				}
+			},
+			{
+				test: /\.jsx$/,
+				exclude: /node_modules/,
+				loader: {
+					loader: 'babel-loader',
+					options: {
+						presets: [
+							'@babel/preset-env',
+							'@babel/preset-react'
 						],
 						plugins: [
 							'@babel/plugin-proposal-class-properties'

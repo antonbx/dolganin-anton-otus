@@ -3,6 +3,8 @@ import Post from '@models/Post';
 import './babel';
 import './styles/styles.css';
 import './styles/less.less';
+import React from 'react';
+import {render} from 'react-dom';
 
 // кстати, мы можем делать еще так:
 // import json './json.json'
@@ -15,4 +17,10 @@ const post = new Post('Webpack title');
 
 console.log(post.toString());
 
-$('pre').html('her');
+//$('pre').html('her');
+
+const App = () => (
+	<b>It's react!</b>
+);
+
+render(<App />, document.getElementById('app'));
