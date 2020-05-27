@@ -45,18 +45,23 @@ const root = {
 		return cartData;
 	},
 	addToCart: (product) => {
-		if (demo.hasOwnProperty(product.id)) {
-			if (cart.hasOwnProperty(product.id)) {
-				cart[product.id]['quantity']++;
-			} else {
-				cart[product.id] = {
-					product: demo[product.id],
-					quantity: 1
-				};
+		let found = false;
+		demo.map((item) => {
+			if (item.hasOwnProperty('id')) {
+				if (item.id === product.id) {
+					if (cart.hasOwnProperty(product.id)) {
+						cart[product.id]['quantity']++;
+					} else {
+						cart[product.id] = {
+							product: item,
+							quantity: 1
+						};
+					}
+					found = true;
+				}
 			}
-			return true;
-		}
-		return false;
+		});
+		return found;
 	}
 };
 
