@@ -16,7 +16,7 @@ module.exports = {
 		path: path.resolve('webpack/dist')
 	},
 	resolve: {
-		extensions: ['.js', '.ts']
+		extensions: ['.js', '.ts', '.tsx']
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
