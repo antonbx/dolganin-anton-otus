@@ -24,10 +24,9 @@
 			<Checkbox id="diff" :checked="isTypeIncluded('diff')" @change="checkType">Разность</Checkbox>
 			<Checkbox id="mult" :checked="isTypeIncluded('mult')" @change="checkType">Умножение</Checkbox>
 			<Checkbox id="div" :checked="isTypeIncluded('div')" @change="checkType">Деление</Checkbox>
-			<Checkbox id="pow" :checked="isTypeIncluded('pow')" @change="checkType">Возведение в степень</Checkbox>
 		</div>
 
-		<button>Play!</button>
+		<button @click="play">Play!</button>
 	</div>
 </template>
 
@@ -35,6 +34,7 @@
 	import ButtonRange from './ButtonRange.vue';
 	import Checkbox from './Checkbox.vue';
 	import Storage from '../lib/storage';
+	import {mapGetters} from 'vuex';
 	import data from '../data';
 
 	const storageInstance = new Storage;
@@ -47,6 +47,7 @@
 		data() {
 			return data;
 		},
+		computed: mapGetters(['data']),
 		watch: {
 			duration: (value) => storageInstance.setStore({...data, duration: value}),
 			level: (value) => storageInstance.setStore({...data, level: value}),
@@ -71,7 +72,18 @@
 						return value || item !== type;
 					}
 				);
+			},
+			play() {
+				if (this.typesIncluded.length) {
+					this.$router.push('/game');
+				} else {
+					alert('Надо выбрать типы операций!');
+				}
 			}
+		},
+		created() {
+			storageInstance.setStateStore(this.$store);
+			storageInstance.setStore(data);
 		}
 	}
 </script>
