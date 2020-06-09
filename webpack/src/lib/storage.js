@@ -1,9 +1,14 @@
 export default class Storage {
+	store;
 	storage;
 	storageKey = 'storage10';
 
 	constructor() {
 		this.storage = window.localStorage;
+	}
+
+	setStateStore(store) {
+		this.store = store;
 	}
 
 	getStore() {
@@ -15,6 +20,7 @@ export default class Storage {
 	}
 
 	setStore(store) {
+		this.store.dispatch('updateData', store);
 		this.storage.setItem(this.storageKey, JSON.stringify(store));
 	}
 }
