@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TextHelperService } from '../text-helper.service';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-recently-added',
@@ -12,10 +13,22 @@ export class RecentlyAddedComponent implements OnInit {
   phrase = new FormControl('');
 
   constructor(
-    private textHelper: TextHelperService
+    private textHelper: TextHelperService,
+    private storage: StorageService
   ) { }
 
   ngOnInit(): void {
+  }
+
+  latest() {
+    let text = '';
+    const phrases = this.storage.getStoreKey('words');
+
+    for (const key in phrases) {
+      text += key + ' - ' + phrases[key] + '\n';
+    }
+
+    return text;
   }
 
   addPhrase() {

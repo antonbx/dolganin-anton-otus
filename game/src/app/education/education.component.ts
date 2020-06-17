@@ -28,7 +28,7 @@ export class EducationComponent implements OnInit {
   checkAnswer() {
     const words = this.storage.getStoreKey('words') || {};
 
-    if (words[this.answer.value] === 'fuck') {
+    if (words[this.answer.value] === this.question) {
       alert('ok');
     }
 
