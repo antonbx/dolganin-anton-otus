@@ -1,17 +1,18 @@
 <div class="settings">
   <div>
     Язык:
-    <select>
-      <option>English</option>
+    <select [formControl]="language">
+      <option name="en" [selected]="language.value === 'en'">en</option>
+      <option name="de" [selected]="language.value === 'de'">de</option>
     </select>
   </div>
   <div>
     Количество слов:
-    <select>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
+    <select [formControl]="number">
+      <option [selected]="number.value == 1">1</option>
+      <option [selected]="number.value == 2">2</option>
+      <option [selected]="number.value == 3">3</option>
     </select>
   </div>
 </div>
-<button>Сохранить</button>
+<button (click)="save()">Сохранить</button>
