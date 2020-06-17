@@ -1,4 +1,5 @@
+Question: <span>{{question}}</span>
 <div class="phrase">
-  <textarea></textarea>
+  <textarea [formControl]="answer"></textarea>
 </div>
-<button>Следующее</button>
+<button (click)="checkAnswer()">Следующее</button>

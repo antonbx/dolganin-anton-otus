@@ -12,7 +12,7 @@ export class TextHelperService {
     private storage: StorageService
   ) { }
 
-  prepareText(text: string) {
+  savePhrase(text: string) {
     text.split(' ')
       .filter((word) => {
         return word.length;

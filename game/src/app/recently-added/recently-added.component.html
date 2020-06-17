@@ -13,4 +13,5 @@
   phrase1 &mdash; перевод1<br/>
   phrase1 &mdash; перевод1<br/>
 </div>
-<button>Добавить</button>
+<input type="text" [formControl]="phrase" />
+<button (click)="addPhrase()">Добавить</button>

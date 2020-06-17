@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TextHelperService } from '../text-helper.service';
 
 @Component({
   selector: 'app-recently-added',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecentlyAddedComponent implements OnInit {
 
-  constructor() { }
+  phrase = new FormControl('');
+
+  constructor(
+    private textHelper: TextHelperService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  addPhrase() {
+    this.textHelper.savePhrase(this.phrase.value);
+    this.phrase.setValue('');
+  }
 }

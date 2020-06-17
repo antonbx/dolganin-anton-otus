@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  language = new FormControl(this.storage.getStoreKey('destinationLang'));
+  number = new FormControl(this.storage.getStoreKey('wordsNumber'));
+
+  constructor(
+    private storage: StorageService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  save() {
+    this.storage.setStoreKey('destinationLang', this.language.value);
+    this.storage.setStoreKey('wordsNumber', this.number.value);
   }
 
 }
